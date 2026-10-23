@@ -3,747 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจัดการเวลาเรียนและตรวจสอบพฤติกรรม นตท.</title>
+    <title>Happy Anniversary ❤</title>
+    <!-- นำเข้าฟอนต์ Google Fonts เพื่อความสวยงาม -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Dancing+Script:wght@700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        /* --- Modern Theme & Animated Background --- */
-        :root {
-            --primary: #0f172a;
-            --primary-light: #1e293b;
-            --accent: #1d4ed8;
-            --accent-hover: #1e40af;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --card-bg: rgba(255, 255, 255, 0.92);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --radius: 12px;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 20px;
-            font-family: 'Inter', 'Noto Sans Thai', sans-serif;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            letter-spacing: -0.01em;
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
             min-height: 100vh;
-            background: linear-gradient(-45deg, #dd1c1a, #0b3c95, #6aa6de, #800020);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- UI Components --- */
-        .fixed-logo {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px;
-            border-radius: var(--radius);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-        .fixed-logo:hover {
-            transform: scale(1.05);
-        }
-        .fixed-logo img {
-            width: 90px;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        /* เอฟเฟกต์โลโก้จักรดาวขยับขึ้นลงในหน้า Login */
-        .login-logo-container {
-            text-align: center;
-            margin-bottom: 15px;
-            animation: floating 3s ease-in-out infinite;
-        }
-        .login-logo-container img {
-            width: 100px;
-            height: auto;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .container {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            width: 100%;
-            max-width: 420px;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-sizing: border-box;
-            backdrop-filter: blur(4px);
-        }
-
-        h2 { 
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center; 
-            margin: 0 0 8px 0; 
-            color: var(--primary);
-        }
-
-        h3 { 
-            font-size: 16px;
-            font-weight: 500;
-            text-align: center; 
-            margin: 0 0 32px 0; 
-            color: var(--text-muted);
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        label { 
-            display: block; 
-            margin-bottom: 8px; 
-            font-weight: 600; 
-            font-size: 14px;
-            color: var(--primary);
-        }
-
-        input[type="text"], input[type="password"], input[type="date"], select {
-            width: 100%; 
-            padding: 14px; 
-            border: 1.5px solid #cbd5e1; 
-            border-radius: var(--radius); 
-            font-size: 15px;
-            font-family: inherit;
-            box-sizing: border-box;
-            text-align: center;
-            color: var(--text-main);
-            background-color: #f8fafc;
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent);
-            background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
-        }
-
-        .submit-btn {
-            width: 100%; 
-            padding: 14px; 
-            background: var(--accent); 
-            color: white; 
-            border: none; 
-            border-radius: var(--radius); 
-            font-size: 16px; 
-            cursor: pointer; 
-            font-weight: 600;
-            font-family: inherit;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
-        }
-        .submit-btn:hover { 
-            background: var(--accent-hover); 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
-        }
-
-        .user-info {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 24px;
-            border-radius: var(--radius);
-            margin-bottom: 32px;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1000px;
-            box-sizing: border-box;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        }
-
-        .logout-btn { 
-            background: rgba(239, 68, 68, 0.25); 
-            padding: 8px 16px; 
-            font-size: 13px; 
-            color: #fee2e2; 
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-weight: 600;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .logout-btn:hover { 
-            background: var(--danger); 
-            color: white;
-        }
-
-        /* --- Navigation Tabs --- */
-        .tab-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 24px;
-            width: 100%;
-            max-width: 1000px;
-            background: rgba(15, 23, 42, 0.4);
-            padding: 6px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 600;
-            background: transparent;
-            color: #cbd5e1;
-            border: none;
-            cursor: pointer;
-            border-radius: 12px;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .tab-btn.active {
-            background: #ffffff;
-            color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .dashboard-content {
-            background: var(--card-bg);
-            padding: 32px;
+        /* กล่องข้อความหลัก */
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.2);
             text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* หัวข้อภาษาอังกฤษสไตล์เขียนมือ */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff477e;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        /* ส่วนแสดงรูปภาพทรงกลม/หัวใจ */
+        .couple-img-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+        }
+
+        .couple-img {
             width: 100%;
-            max-width: 1000px;
-            box-sizing: border-box;
-            margin-bottom: 32px;
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
-        /* --- Buttons inside Dashboard --- */
-        .sub-btn {
-            padding: 12px 20px;
-            margin: 6px;
-            font-size: 14px;
-            background-color: #f1f5f9;
-            color: var(--primary);
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .sub-btn:hover {
-            background-color: var(--primary);
+        .heart-icon {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            background: #ff477e;
             color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
         }
 
-        /* --- Data Table --- */
-        table {
-            width: 100%; 
-            border-collapse: separate;
-            border-spacing: 0;
-            background: white;
-            margin-top: 20px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-        }
-        th {
-            background-color: #f8fafc;
-            color: var(--primary);
-            padding: 16px; 
+        /* ส่วนคำนวณเวลาที่คบกัน */
+        .timer-title {
+            font-size: 1.1rem;
+            color: #ff5c8a;
             font-weight: 600;
-            font-size: 14px;
-            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 0.8rem;
         }
-        td {
-            padding: 14px; 
-            border-bottom: 1px solid #edf2f7;
-            color: var(--text-main);
-            font-size: 14px;
-        }
-        tr:last-child td { border-bottom: none; }
 
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent);
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .time-box {
+            background: #fff0f3;
+            padding: 10px 5px;
+            border-radius: 12px;
+            border: 1px solid #ffccd5;
+        }
+
+        .time-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff477e;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            color: #a3a3a3;
+        }
+
+        /* ข้อความซึ้งๆ */
+        .love-letter {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #495057;
+            font-style: italic;
+            border-top: 1fr solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        /* ปุ่มกดเล่นเพลงหรือส่งความรัก */
+        .btn-love {
+            margin-top: 1.5 rem;
+            background: linear-gradient(45deg, #ff477e, #ff7096);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 1rem;
+            border-radius: 25px;
             cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.4);
         }
 
-        .hidden { display: none !important; }
-        
-        .shadow-text {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        .btn-love:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 126, 0.6);
+        }
+
+        /* เอฟเฟกต์หัวใจโปรยปราย */
+        .falling-heart {
+            position: absolute;
+            color: #ff7096;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+
+        /* Keyframes แอนิเมชัน */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
 
-    <div id="loginSection" class="container">
-        <div class="login-logo-container">
-            <img src="IMG_0746.PNG" alt="จักรดาว">
+    <div class="container">
+        <!-- หัวข้อ -->
+        <h1 class="main-title">Happy Anniversary</h1>
+        <p class="subtitle">สุขสันต์วันครบรอบมุ้ตอลกับเค้าาาา ❤</p>
+
+        <!-- รูปภาพคู่ (เปลี่ยน URL รูปใน src ได้เลย) -->
+        <div class="couple-img-container">
+            <img class="couple-img" src="IMG_2114.JPG" alt="Couple">
+            <div class="heart-icon">❤</div>
         </div>
 
-        <h2>ระบบตรวจสอบพฤติกรรม นตท.</h2>
-        <h3>ชั้นปีที่ 2 ตอน 21</h3>
-        <form id="loginForm" onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label for="username">ชื่อผู้ใช้งาน (เลขประจำตัว 5 หลัก)</label>
-                <input type="text" id="username" pattern="\d{5}" maxlength="5" placeholder="• • • • •" required>
-            </div>
-            <div class="form-group">
-                <label for="password">รหัสผ่าน (5 หลัก)</label>
-                <input type="password" id="password" pattern="\d{5}" maxlength="5" placeholder="• • • • •" required>
-            </div>
-            <button type="submit" class="submit-btn">เข้าสู่ระบบ</button>
-        </form>
-    </div>
-
-    <div id="dashboardSection" class="hidden" style="width: 100%; max-width: 1040px; display: flex; flex-direction: column; align-items: center;">
-        
-        <div class="user-info">
-            <span>ผู้ใช้งานปัจจุบัน: <strong id="displayUser" style="color: #67e8f9;">อาจารย์ผู้ควบคุม</strong></span>
-            <button class="logout-btn" onclick="handleLogout()">ออกจากระบบ</button>
-        </div>
-
-        <h1 class="shadow-text" style="text-align: center; font-size: 28px; font-weight: 700; color: white; margin: 0 0 32px 0;">ระบบจัดการเวลาเรียนและตรวจสอบพฤติกรรมนตท. ชั้นปีที่ 2 ตอน 21</h1>
-        
-        <div class="tab-container">
-            <button id="tabDaily" class="tab-btn active" onclick="switchPage('daily')">📝 บันทึกข้อมูลรายวัน</button>
-            <button id="tabYearly" class="tab-btn" onclick="switchPage('yearly')">📊 สถิติสะสมตลอดปี</button>
-        </div>
-
-        <div id="pageDaily" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            
-            <div class="dashboard-content" style="max-width: 600px; padding: 24px;">
-                <div style="display: flex; gap: 20px;">
-                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
-                        <label for="academicYear">🎓 ปีการศึกษา</label>
-                        <select id="academicYear" onchange="onYearChange()">
-                            <option value="2569">2569</option>
-                            <option value="2570">2570</option>
-                            <option value="2571">2571</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
-                        <label for="checkDate">📅 เลือกวันที่</label>
-                        <input type="date" id="checkDate" onchange="onDateChange()">
-                    </div>
+        <!-- ตัวนับเวลา -->
+        <div class="timer-section">
+            <p class="timer-title">เค้าเลี้ยงมุ้ตอลมาแล้ว...</p>
+            <div class="timer-grid">
+                <div class="time-box">
+                    <span class="time-number" id="days">00</span>
+                    <span class="time-label">วัน</span>
                 </div>
-            </div>
-
-            <div id="subjectsSection" class="dashboard-content hidden">
-                <h3 id="day-label" style="color: var(--primary); font-size: 18px; font-weight: 600; margin-bottom: 20px;"></h3>
-                
-                <div id="monday-subjects" style="display: none;">
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 1 ฟิสิกส์')">คาบ 1: ฟิสิกส์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 2 คณิตศาสตร์เพิ่มเติม')">คาบ 2: คณิตศาสตร์เพิ่มเติม</button>
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 3-4 เคมี')">คาบ 3-4: เคมี</button>
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 5 เศรษฐศาสตร์')">คาบ 5: เศรษฐศาสตร์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 6 Lab')">คาบ 6: Lab</button>
-                    <button class="sub-btn" onclick="showAttendance('วันจันทร์ คาบ 7-8 กิจกรรมชมรม')">คาบ 7-8: กิจกรรมชมรม</button>
+                <div class="time-box">
+                    <span class="time-number" id="hours">00</span>
+                    <span class="time-label">ชม.</span>
                 </div>
-                <div id="tuesday-subjects" style="display: none;">
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 1 คณิตพื้นฐาน')">คาบ 1: คณิตพื้นฐาน</button>
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 2 ประวัติศาสตร์')">คาบ 2: ประวัติศาสตร์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 3 คณิตเพิ่มเติม')">คาบ 3: คณิตเพิ่มเติม</button>
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 4 Upbeat')">คาบ 4: Upbeat</button>
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 5 เคมี')">คาบ 5: เคมี</button>
-                    <button class="sub-btn" onclick="showAttendance('วันอังคาร คาบ 6-7 ฟิสิกส์')">คาบ 6-7: ฟิสิกส์</button>
+                <div class="time-box">
+                    <span class="time-number" id="minutes">00</span>
+                    <span class="time-label">นาที</span>
                 </div>
-                <div id="wednesday-subjects" style="display: none;">
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 1 การเขียน')">คาบ 1: การเขียน</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 2 ฟิสิกส์')">คาบ 2: ฟิสิกส์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 3 คณิตศาสตร์เพิ่มเติม')">คาบ 3: คณิตศาสตร์เพิ่มเติม</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 4 ภาษาไทย')">คาบ 4: ภาษาไทย</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 5 เศรษฐศาสตร์')">คาบ 5: เศรษฐศาสตร์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 6 แนะแนว ห้องสมุด')">คาบ 6: แนะแนว/ห้องสมุด</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพุธ คาบ 7 ALC')">คาบ 7: ALC</button>
-                </div>
-                <div id="thursday-subjects" style="display: none;">
-                    <button class="sub-btn" onclick="showAttendance('วันพฤหัสบดี คาบ 1 การอบรมทางทหาร')">คาบ 1: การอบรมทางทหาร</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพฤหัสบดี คาบ 2 วิทยาศาสตร์การกีฬา')">คาบ 2: วิทยาศาสตร์การกีฬา</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพฤหัสบดี คาบ 3 ฟุตบอล')">คาบ 3: ฟุตบอล</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพฤหัสบดี คาบ 4 สุขศึกษา')">คาบ 4: สุขศึกษา</button>
-                    <button class="sub-btn" onclick="showAttendance('วันพฤหัสบดี คาบ 5-7 วิชาทหาร-ตำรวจ')">คาบ 5-7: วิชาทหาร-ตำรวจ</button>
-                </div>
-                <div id="friday-subjects" style="display: none;">
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 1 ภาษาจีน')">คาบ 1: ภาษาจีน</button>
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 2 ภาษาไทย')">คาบ 2: ภาษาไทย</button>
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 3 Conversation')">คาบ 3: Conversation</button>
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 4 คณิตศาสตร์พื้นฐาน')">คาบ 4: คณิตศาสตร์พื้นฐาน</button>
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 5 ทัศนศิลป์')">คาบ 5: ทัศนศิลป์</button>
-                    <button class="sub-btn" onclick="showAttendance('วันศุกร์ คาบ 6-7 คอมพิวเตอร์')">คาบ 6-7: คอมพิวเตอร์</button>
-                </div>
-                <div id="weekend-message" style="display: none; color: var(--danger); font-weight: 600; padding: 15px;">
-                    ⚠️ วันที่เลือกเป็นวันหยุดเสาร์-อาทิตย์ ไม่มีตารางเรียนในระบบ
-                </div>
-            </div>
-
-            <div id="attendance-box" class="dashboard-content" style="display: none;">
-                <h2 id="current-subject" style="color: var(--primary); margin-bottom: 6px;"></h2>
-                <p id="current-date-display" style="color: var(--accent); font-weight: 600; font-size: 15px; margin: 0 0 24px 0;"></p>
-                
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <img src="IMG_1181.JPG" alt="ตารางเรียนประจำตอน" width="500" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; height: auto;">
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table id="attendance-table">
-                        <thead>
-                            <tr>
-                                <th width="60">ลำดับ</th>
-                                <th style="text-align: left;">ชื่อ-นามสกุล</th>
-                                <th width="80">มาเรียน</th>
-                                <th width="80">ลา</th>
-                                <th width="80">ขาดเรียน</th>
-                                <th width="80" style="color: #b78103;">หลับ</th>
-                                <th width="80" style="color: var(--danger);">ไม่นำหนังสือมาเรียน</th>
-                                <th width="80" style="color: var(--success);">ตั้งใจเรียน</th>
-                            </tr>
-                        </thead>
-                        <tbody id="attendance-tbody"></tbody>
-                    </table>
-                </div>
-                <button class="submit-btn" style="margin-top: 32px; background-color: var(--success); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);" onclick="saveToDatabase()">💾 บันทึกข้อมูลรายวันเข้าคลาวด์</button>
-            </div>
-        </div>
-
-        <div id="pageYearly" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <div class="dashboard-content">
-                <h2 style="color: var(--primary); margin-bottom: 8px;">📊 สรุปรายงานพฤติกรรมสะสมตลอดปีการศึกษา</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin: 0 0 24px 0;">ระบบดึงข้อมูลสรุปพฤติกรรมภาพรวมของ นตท. ทุกนาย</p>
-                
-                <div style="max-width: 280px; margin: 0 auto 28px auto;">
-                    <label for="viewYearSelect" style="font-size: 14px; margin-bottom: 6px;">เลือกปีการศึกษาที่ต้องการเรียกดูคลังข้อมูล:</label>
-                    <select id="viewYearSelect" onchange="loadYearlySummary()">
-                        <option value="2569">2569</option>
-                        <option value="2570">2570</option>
-                        <option value="2571">2571</option>
-                    </select>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th width="60">ลำดับ</th>
-                                <th style="text-align: left;">ชื่อ-นามสกุล</th>
-                                <th>มาเรียนรวม</th>
-                                <th>ลารวม</th>
-                                <th style="color: var(--danger);">ขาดเรียนรวม</th>
-                                <th style="color: #b78103;">หลับรวม</th>
-                                <th style="color: #c65911;">ไม่นำหนังสือมาเรียน</th>
-                                <th style="color: #375623;">ตั้งใจเรียนรวม</th>
-                            </tr>
-                        </thead>
-                        <tbody id="yearly-summary-tbody"></tbody>
-                    </table>
+                <div class="time-box">
+                    <span class="time-number" id="seconds">00</span>
+                    <span class="time-label">วิ</span>
                 </div>
             </div>
         </div>
 
+        <!-- กล่องจดหมายรัก -->
+        <p class="love-letter">
+            "เค้าขอบคุณตอลมากๆนะที่ยุกับเค้าจนเกือบ2ปีตลอดเวลาที่ผ่านมาเกิดเรื่องเย้อมากกกกก <br>
+            แต่ตอลก้ยางยุกับเค้าตอลม่ายหนีเค้าเค้าดีใจมั่กๆๆๆๆๆที่ตอลรักเค้าขนาดนี้ <br>
+            ยุกับเค้าปายนานๆเลยน้าาาาาาเค้ารักตอลน้าาาาาารักทิสุดดดดดด"
+        </p>
+
+        <!-- ปุ่มกดเล่นๆ เพิ่มลูกเล่น -->
+        <button class="btn-love" onclick="createHeartShower()">กดรับความรัก ❤</button>
     </div>
 
     <script>
-        // ข้อมูลต้นแบบ นตท. ตอน 21
-        const studentsList = [
-            { id: 1, name: "นตท.ปรเมศวร์ จงชมผา" },
-            { id: 2, name: "นตท. ภานุพงศ์ พุทสุข" },
-            { id: 3, name: "นตท.ภูพริษฐ์ แงมรกต" }
-        ];
+        // 1. ตั้งค่าวันที่เริ่มต้นคบกัน (ปี ค.ศ., เดือน-1 (ม.ค.=0, ก.พ.=1), วัน, ชม, นาที)
+        // เช่น คบกันวันที่ 14 กุมภาพันธ์ 2024 เวลา 00:00 น. ให้แก้เป็น new Date(2024, 1, 14, 0, 0, 0)
+        const startDate = new Date(2024, 10, 21, 18, 4, 2); 
 
-        // ตรวจสอบการตั้งค่า Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCOMkbs-zD4zSMH3suIsfYQ0cgUl1Jfb9o",
-            authDomain: "afaps68–sec21.firebaseapp.com",
-            projectId: "afaps68–sec21",
-            storageBucket: "afaps68–sec21.firebasestorage.app",
-            messagingSenderId: "6604547495",
-            appId: "1:6604547495:web:d2ce84caeba121e3550282",
-            measurementId: "G-X703072VSK"
-        };
-        
-        var database = null;
-        if(firebaseConfig.apiKey !== "") {
-            firebase.initializeApp(firebaseConfig);
-            database = firebase.database();
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            // คำนวณ เวลา
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // อัปเดตลงหน้าเว็บ
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-        // โหลดรายชื่อลงตารางเช็กชื่อรายวัน
-        const tbody = document.getElementById('attendance-tbody');
-        studentsList.forEach(std => {
-            tbody.innerHTML += `
-                <tr data-id="${std.id}">
-                    <td>${std.id}</td>
-                    <td style="text-align: left; font-weight: 600;">${std.name}</td>
-                    <td><input type="checkbox" class="chk-come" checked></td>
-                    <td><input type="checkbox" class="chk-leave"></td>
-                    <td><input type="checkbox" class="chk-absent"></td>
-                    <td><input type="checkbox" class="chk-sleep"></td>
-                    <td><input type="checkbox" class="chk-nobook"></td>
-                    <td><input type="checkbox" class="chk-noactive"></td>
-                </tr>
-            `;
-        });
+        // ให้ฟังก์ชันทำงานทุกๆ 1 วินาที
+        setInterval(updateTimer, 1000);
+        updateTimer(); // รันทันทีเมื่อโหลดหน้าเว็บ
 
-        function switchPage(page) {
-            document.getElementById('tabDaily').classList.remove('active');
-            document.getElementById('tabYearly').classList.remove('active');
-            document.getElementById('pageDaily').classList.add('hidden');
-            document.getElementById('pageYearly').classList.add('hidden');
-
-            if(page === 'daily') {
-                document.getElementById('tabDaily').classList.add('active');
-                document.getElementById('pageDaily').classList.remove('hidden');
-            } else if(page === 'yearly') {
-                document.getElementById('tabYearly').classList.add('active');
-                document.getElementById('pageYearly').classList.remove('hidden');
-                loadYearlySummary(); // โหลดสรุปข้อมูลสดใหม่จาก Realtime database ทุกครั้งที่เปิดแท็บนี้
-            }
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const userInp = document.getElementById('username').value;
-            const passInp = document.getElementById('password').value;
-
-            const digitCheck = /^\d{5}$/;
-            if (!digitCheck.test(userInp) || !digitCheck.test(passInp)) {
-                alert("⚠️ ปฏิเสธการเข้าถึง: ชื่อผู้ใช้งานและรหัสผ่านจะต้องเป็นตัวเลข 5 หลักเท่านั้น!");
-                return;
-            }
-
-            document.getElementById('loginSection').classList.add('hidden');
-            document.getElementById('dashboardSection').classList.remove('hidden');
-            document.getElementById('displayUser').innerText = "รหัสประจำตัว " + userInp;
-            document.getElementById('checkDate').value = new Date().toISOString().split('T')[0];
-            onDateChange();
-            renderOfflineYearlySummary();
-        }
-
-        function handleLogout() {
-            document.getElementById('username').value = "";
-            document.getElementById('password').value = "";
-            document.getElementById('dashboardSection').classList.add('hidden');
-            document.getElementById('loginSection').classList.remove('hidden');
-        }
-
-        function onDateChange() {
-            const selectedDate = document.getElementById('checkDate').value;
-            if(!selectedDate) return;
-            document.getElementById('attendance-box').style.display = 'none';
+        // 2. ฟังก์ชันทำหัวใจโปรยปรายอัตโนมัติ
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("falling-heart");
+            heart.innerText = "❤";
             
-            const dayOfWeek = new Date(selectedDate).getDay();
-            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('current-date-display').innerText = "ประจำวันที่: " + new Date(selectedDate).toLocaleDateString('th-TH', dateOptions);
-            document.getElementById('subjectsSection').classList.remove('hidden');
-
-            document.getElementById('monday-subjects').style.display = 'none';
-            document.getElementById('tuesday-subjects').style.display = 'none';
-            document.getElementById('wednesday-subjects').style.display = 'none';
-            document.getElementById('thursday-subjects').style.display = 'none';
-            document.getElementById('friday-subjects').style.display = 'none';
-            document.getElementById('weekend-message').style.display = 'none';
-
-            if (dayOfWeek === 1) {
-                document.getElementById('day-label').innerText = "📚 รายวิชาเรียนประจำวันจันทร์";
-                document.getElementById('monday-subjects').style.display = 'block';
-            } else if (dayOfWeek === 2) {
-                document.getElementById('day-label').innerText = "📚 รายวิชาเรียนประจำวันอังคาร";
-                document.getElementById('tuesday-subjects').style.display = 'block';
-            } else if (dayOfWeek === 3) {
-                document.getElementById('day-label').innerText = "📚 รายวิชาเรียนประจำวันพุธ";
-                document.getElementById('wednesday-subjects').style.display = 'block';
-            } else if (dayOfWeek === 4) {
-                document.getElementById('day-label').innerText = "📚 รายวิชาเรียนประจำวันพฤหัสบดี";
-                document.getElementById('thursday-subjects').style.display = 'block';
-            } else if (dayOfWeek === 5) {
-                document.getElementById('day-label').innerText = "📚 รายวิชาเรียนประจำวันศุกร์";
-                document.getElementById('friday-subjects').style.display = 'block';
-            } else {
-                document.getElementById('day-label').innerText = "📅 ตารางกิจกรรม";
-                document.getElementById('weekend-message').style.display = 'block';
-            }
-        }
-
-        let currentActiveSubject = "";
-        function showAttendance(subjectDetails) {
-            // ทำความสะอาดชื่อวิชา ป้องกันอักขระพิเศษขัดขวางการจัดโครงสร้าง Path ของ Firebase
-            currentActiveSubject = subjectDetails.replace(/[.#$/\[\]]/g, "-");
-            document.getElementById('attendance-box').style.display = 'block';
-            document.getElementById('current-subject').innerText = 'กำลังตรวจสอบพฤติกรรม: ' + subjectDetails;
+            // สุ่มตำแหน่งและความเร็ว
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s"; // ระหว่าง 3-6 วินาที
+            heart.style.fontSize = Math.random() * 15 + 15 + "px"; // ขนาด 15-30px
             
-            // ดึงข้อมูลเก่าที่เคยบันทึกไว้ในวันนี้และวิชานี้ (ถ้ามี) มาแสดงบนเช็กบ็อกซ์ป้องกันการเขียนทับโดยไม่ตั้งใจ
-            const selectedDate = document.getElementById('checkDate').value;
-            const selectedYear = document.getElementById('academicYear').value;
-            if(database) {
-                database.ref('years/' + selectedYear + '/attendance/' + selectedDate + '/' + currentActiveSubject).once('value', (snapshot) => {
-                    const data = snapshot.val();
-                    if(data) {
-                        studentsList.forEach(std => {
-                            if(data[std.id]) {
-                                const row = document.querySelector(`tr[data-id="${std.id}"]`);
-                                row.querySelector('.chk-come').checked = data[std.id].come === 1;
-                                row.querySelector('.chk-leave').checked = data[std.id].leave === 1;
-                                row.querySelector('.chk-absent').checked = data[std.id].absent === 1;
-                                row.querySelector('.chk-sleep').checked = data[std.id].sleep === 1;
-                                row.querySelector('.chk-nobook').checked = data[std.id].nobook === 1;
-                                row.querySelector('.chk-noactive').checked = data[std.id].noactive === 1;
-                            }
-                        });
-                    }
-                });
-            }
+            document.body.appendChild(heart);
+            
+            // ลบเมื่อหลุดหน้าจอไปแล้ว
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
         }
 
-        function onYearChange() {
-            document.getElementById('viewYearSelect').value = document.getElementById('academicYear').value;
-            document.getElementById('attendance-box').style.display = 'none';
-        }
+        // ปล่อยหัวใจตกเรื่อยๆ ทุก 500 มิลลิวินาที
+        setInterval(createHeart, 500);
 
-        // ระบบบันทึกข้อมูลรายวันส่งตรงไปยัง Firebase คลาวด์
-        function saveToDatabase() {
-            const selectedDate = document.getElementById('checkDate').value;
-            const selectedYear = document.getElementById('academicYear').value;
-
-            if(!currentActiveSubject) {
-                alert("⚠️ กรุณาเลือกคาบวิชาเรียนก่อนกดบันทึก!");
-                return;
+        // 3. ฟังก์ชันปุ่มกดแล้วหัวใจพุ่งกระจาย
+        function createHeartShower() {
+            for(let i=0; i<20; i++) {
+                setTimeout(createHeart, i * 50);
             }
-
-            if(!database) {
-                alert("⚠️ ไม่พบการเชื่อมต่อคลาวด์: บันทึกข้อมูลจำลองแบบออฟไลน์สำเร็จ!");
-                return;
-            }
-
-            const saveData = {};
-            studentsList.forEach(std => {
-                const row = document.querySelector(`tr[data-id="${std.id}"]`);
-                saveData[std.id] = {
-                    name: std.name,
-                    come: row.querySelector('.chk-come').checked ? 1 : 0,
-                    leave: row.querySelector('.chk-leave').checked ? 1 : 0,
-                    absent: row.querySelector('.chk-absent').checked ? 1 : 0,
-                    sleep: row.querySelector('.chk-sleep').checked ? 1 : 0,
-                    nobook: row.querySelector('.chk-nobook').checked ? 1 : 0,
-                    noactive: row.querySelector('.chk-noactive').checked ? 1 : 0
-                };
-            });
-
-            database.ref('years/' + selectedYear + '/attendance/' + selectedDate + '/' + currentActiveSubject).set(saveData, (error) => {
-                if (error) {
-                    alert("เกิดปัญหาข้อผิดพลาดในการส่งข้อมูล: " + error.message);
-                } else {
-                    alert("บันทึกพฤติกรรม นตท. รายวิชานี้และจัดส่งไปรวบรวมสะสมในคลังปีการศึกษา " + selectedYear + " เรียบร้อย!");
-                }
-            });
-        }
-
-        // ฟังก์ชันประมวลผลสถิติสะสมจากข้อมูลคลาวด์แบบ Realtime
-        function loadYearlySummary() {
-            if(!database) {
-                renderOfflineYearlySummary();
-                return;
-            }
-            const viewYear = document.getElementById('viewYearSelect').value;
-
-            database.ref('years/' + viewYear + '/attendance').on('value', (snapshot) => {
-                const allData = snapshot.val();
-                const summary = {};
-
-                // กำหนดค่าตั้งต้น
-                studentsList.forEach(std => {
-                    summary[std.id] = { name: std.name, come: 0, leave: 0, absent: 0, sleep: 0, nobook: 0, noactive: 0 };
-                });
-
-                // วนลูปสแกนคำนวณผลสรุปจากกิ่งวันที่และวิชาทั้งหมดในคลาวด์
-                if(allData) {
-                    for(let date in allData) {
-                        for(let subject in allData[date]) {
-                            for(let stdId in allData[date][subject]) {
-                                if(summary[stdId]) {
-                                    const record = allData[date][subject][stdId];
-                                    summary[stdId].come += parseInt(record.come || 0);
-                                    summary[stdId].leave += parseInt(record.leave || 0);
-                                    summary[stdId].absent += parseInt(record.absent || 0);
-                                    summary[stdId].sleep += parseInt(record.sleep || 0);
-                                    summary[stdId].nobook += parseInt(record.nobook || 0);
-                                    summary[stdId].noactive += parseInt(record.noactive || 0);
-                                }
-                            }
-                        }
-                    }
-                }
-                renderSummaryTable(summary);
-            });
-        }
-
-        function renderSummaryTable(summaryData) {
-            const summaryTbody = document.getElementById('yearly-summary-tbody');
-            summaryTbody.innerHTML = "";
-            for(let id in summaryData) {
-                const std = summaryData[id];
-                summaryTbody.innerHTML += `
-                    <tr>
-                        <td>${id}</td>
-                        <td style="text-align: left; font-weight: 600;">${std.name}</td>
-                        <td>${std.come} คาบ</td>
-                        <td>${std.leave} ครั้ง</td>
-                        <td style="color: var(--danger); font-weight: 600;">${std.absent} ครั้ง</td>
-                        <td style="color: #b78103;">${std.sleep} ครั้ง</td>
-                        <td style="color: #c65911;">${std.nobook} ครั้ง</td>
-                        <td style="color: #375623; font-weight: 600;">${std.noactive} ครั้ง</td>
-                    </tr>
-                `;
-            }
-        }
-
-        function renderOfflineYearlySummary() {
-            const mockSummary = {};
-            studentsList.forEach(std => {
-                mockSummary[std.id] = { name: std.name, come: 0, leave: 0, absent: 0, sleep: 0, nobook: 0, noactive: 0 };
-            });
-            renderSummaryTable(mockSummary);
         }
     </script>
 </body>
